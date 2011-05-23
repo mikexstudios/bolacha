@@ -24,7 +24,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-from bolacha.httplib2 import Http as HTTPClass
+from httplib2 import Http as HTTPClass
 from bolacha.multipart import BOUNDARY
 from bolacha.multipart import encode_multipart
 from bolacha.multipart import urlencode
