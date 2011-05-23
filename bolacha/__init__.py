@@ -105,6 +105,10 @@ class Bolacha(object):
                                                        for key,value
                                                        in expand_items(body)])
 
+        #We can only send files with POST or PUT
+        if body_has_file and method not in ('POST', 'PUT'):
+            raise Exception('Bolacha.request, can only send files with POST or PUT!')
+
         if isinstance(body, dict):
             if body_has_file:
                 rbody = encode_multipart(BOUNDARY, body)
@@ -136,6 +140,12 @@ class Bolacha(object):
         elif body_has_file:
             rheaders['Content-type'] = 'multipart/form-data; boundary=%s' % BOUNDARY
             rheaders['content-length'] = '%d' % len(rbody)
+
+        #For httplib2, if the request is either GET or HEAD, need to append
+        #body to url.
+        if method in ('GET', 'HEAD'):
+            url += '?%s' % rbody
+            rbody = ''
 
         response, content = self.http.request(url, method, rbody, rheaders)
 
