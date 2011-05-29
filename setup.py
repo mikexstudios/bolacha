@@ -26,7 +26,7 @@
 
 from setuptools import setup, find_packages
 setup(name='bolacha',
-    version='0.6.0',
+    version='dev',
     description='Bolacha is a simple http client that allows you ' \
         'testing http requests, handling cookies and file upload.',
     author=u'Gabriel Falcão',
